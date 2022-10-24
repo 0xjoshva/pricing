@@ -1,10 +1,16 @@
 <template>
   <section>
+    
+    <!-- <img src="../assets/bg-bottom.svg" alt="" class="bottom"> -->
     <h1 class="header">Our Pricing</h1>
     <div class="range">
-      <p>Annually</p>
-      <button></button>
       <p>Monthly</p>
+      
+      <label class="switch">
+  <input type="checkbox">
+  <span class="slider round"></span>
+</label>
+      <p>Annually</p>
     </div>
 
     <div class="container">
@@ -12,7 +18,7 @@
         <p class="tier">Basic</p>
         <div class="pricing">
           <p class="monthly" v-if="annually = true">19.99</p>
-          <p class="annually" v-else-if="annually = false">0</p>
+          <p class="annually" v-else-if="annually = false">199.99</p>
         </div>
         <div>
           <p class="storage">500 GB</p>
@@ -25,7 +31,7 @@
         <p class="tier">Professional</p>
         <div class="pricing">
           <p class="monthly" v-if="annually = true">24.99</p>
-          <p class="annually" v-else-if="annually = false"></p>
+          <p class="annually" v-else-if="annually = false">249.99</p>
         </div>
         <div>
           <p class="storage">1 TB</p>
@@ -38,7 +44,7 @@
         <p class="tier">Master</p>
         <div class="pricing">
           <p class="monthly" v-if="annually = true">39.99</p>
-          <p class="annually" v-else-if="annually = false"></p>
+          <p class="annually" v-else-if="annually = false">399.99</p>
         </div>
         <div>
           <p class="storage">2 TB</p>
@@ -48,6 +54,7 @@
         <button>LEARN MORE</button>
       </div>
     </div>
+    <img src="../assets/bg-top.svg" alt="" class="top">
   </section>
 </template>
 
@@ -100,8 +107,13 @@ section {
   align-items: center;
   width: 100%;
   height: 100vh;
-  background: var(--verylightgreyblue);
+  background: url(../assets/bg-bottom.svg), var(--verylightgreyblue);
+  background-repeat: no-repeat;
+  background-position: bottom left;
+  background-size: 30%;
   font-family: "Montserrat";
+  z-index: 1;
+  position: relative;
 }
 
 .container {
@@ -110,12 +122,16 @@ section {
   align-items: center;
   justify-content: center;
   column-gap: 0;
+  position: relative;
+  z-index: 3;
 }
 .item {
   width: 22rem;
   height: 27rem;
   box-shadow: 0px 0px 20px 3px rgba(0, 0, 0, 0.144);
   padding: 2rem;
+  position: relative;
+  z-index: 3;
 }
 .item:nth-child(1) {
   border-top-left-radius: 12px;
@@ -143,6 +159,7 @@ section {
   font-size: .8rem;
   border-radius: 6px;
   background: linear-gradient(90deg, hsl(236, 72%, 79%), hsl(237, 63%, 64%));
+  transition: .1s ease-in-out all;
 }
 .special button {
   color: hsl(237, 63%, 64%);
@@ -213,5 +230,106 @@ p{
 }
 .storage::after{
 content: ' Storage'
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  min-width: 60px;
+  min-height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s all ease-in-out;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+ background:linear-gradient(180deg, hsl(236, 72%, 79%), hsl(237, 63%, 64%));
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px hsl(237, 63%, 64%);
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+.range{
+  display: flex;
+  width: fit-content;
+  height: fit-content;
+  align-items: center;
+  justify-content: center;
+  column-gap: 1.5rem;
+  padding: 2rem;
+  padding-bottom: 3rem;
+position: relative;
+z-index: 3;
+}
+.range p{
+    color: var(--lightgreyblue) !important;
+}
+
+.header{
+font-size: 2rem;
+color: var(--greyblue);
+position: relative;
+z-index: 3;
+}
+.item button:active{
+  border: 1px solid hsl(237, 63%, 64%);
+  color: hsl(237, 63%, 64%);
+  background: transparent;
+}
+.special button:active{
+  border: 1px solid white;
+  color: white;
+  background: transparent;
+
+}
+.top{
+  position: absolute;
+  z-index: 1;
+  object-fit: contain;
+  width: 100%;
+  height: 100vh;
+  object-position:top right;
 }
 </style>
