@@ -1,24 +1,23 @@
 <template>
   <section>
-    
     <!-- <img src="../assets/bg-bottom.svg" alt="" class="bottom"> -->
     <h1 class="header">Our Pricing</h1>
     <div class="range">
-      <p>Monthly</p>
-      
+      <p class="inactive" :class="{ active: monkey }">Monthly</p>
+
       <label class="switch">
-  <input type="checkbox">
-  <span class="slider round"></span>
-</label>
-      <p>Annually</p>
+        <input type="checkbox"  />
+        <span class="slider round" @click="monkey = !monkey"></span>
+      </label>
+      <p class="inactive" :class="{ active: !monkey }">Annually</p>
     </div>
 
     <div class="container">
       <div class="item">
         <p class="tier">Basic</p>
         <div class="pricing">
-          <p class="monthly" v-if="annually = true">19.99</p>
-          <p class="annually" v-else-if="annually = false">199.99</p>
+          <p class="monthly" v-show="monkey === true">19.99</p>
+          <p class="annually" v-show="monkey !== true">199.99</p>
         </div>
         <div>
           <p class="storage">500 GB</p>
@@ -30,8 +29,8 @@
       <div class="item special">
         <p class="tier">Professional</p>
         <div class="pricing">
-          <p class="monthly" v-if="annually = true">24.99</p>
-          <p class="annually" v-else-if="annually = false">249.99</p>
+          <p class="monthly" v-show="monkey === true">24.99</p>
+          <p class="annually" v-show="monkey !== true">249.99</p>
         </div>
         <div>
           <p class="storage">1 TB</p>
@@ -43,8 +42,8 @@
       <div class="item">
         <p class="tier">Master</p>
         <div class="pricing">
-          <p class="monthly" v-if="annually = true">39.99</p>
-          <p class="annually" v-else-if="annually = false">399.99</p>
+          <p class="monthly" v-show="monkey === true">39.99</p>
+          <p class="annually" v-show="monkey !== true">399.99</p>
         </div>
         <div>
           <p class="storage">2 TB</p>
@@ -54,7 +53,7 @@
         <button>LEARN MORE</button>
       </div>
     </div>
-    <img src="../assets/bg-top.svg" alt="" class="top">
+    <img src="../assets/bg-top.svg" alt="" class="top" />
   </section>
 </template>
 
@@ -62,39 +61,8 @@
 export default {
   data() {
     return {
-      cards: [
-        {
-          id: 1,
-          tier: "Basic",
-          monthly: "19.99",
-          annually: "",
-          storage: "500GB",
-          users: "2",
-          upload: "3GB",
-        },
-        {
-          id: 2,
-          tier: "Professional",
-          monthly: "24.99",
-          annually: " ",
-          storage: "1TB",
-          users: "5",
-          upload: "10GB",
-        },
-        {
-          id: 3,
-          tier: "Master",
-          monthly: "39.99",
-          annually: " ",
-          storage: "2TB",
-          users: "10",
-          upload: "20GB",
-        },
-        
-      ],
-       annually: false,
+      monkey: true,
     };
-   
   },
 };
 </script>
@@ -123,7 +91,7 @@ section {
   justify-content: center;
   column-gap: 0;
   position: relative;
-  z-index: 3;
+  z-index: 9999;
 }
 .item {
   width: 22rem;
@@ -156,34 +124,34 @@ section {
   font-weight: 700;
   color: white;
   border: none;
-  font-size: .8rem;
+  font-size: 0.8rem;
   border-radius: 6px;
   background: linear-gradient(90deg, hsl(236, 72%, 79%), hsl(237, 63%, 64%));
-  transition: .1s ease-in-out all;
+  transition: 0.1s ease-in-out all;
 }
 .special button {
   color: hsl(237, 63%, 64%);
 
   background: var(--verylightgreyblue);
 }
-.monthly::before,.annually::before {
+.monthly::before,
+.annually::before {
   content: "$";
   font-size: 2rem;
   vertical-align: middle;
-  padding-right: .5rem;
-
+  padding-right: 0.5rem;
 }
 .users::after {
   content: " Users Allowed";
 }
-p{
-   width: 100%;
+p {
+  width: 100%;
   text-align: center;
   font-size: 1rem;
   font-weight: 600;
   color: var(--darkgreyblue);
 }
-.special p{
+.special p {
   color: var(--verylightgreyblue);
 }
 .tier {
@@ -198,38 +166,43 @@ p{
   color: var(--verylightgreyblue);
   padding-top: 1.5rem;
 }
-.monthly , .annually{
+.monthly,
+.annually {
   font-size: 3.2rem;
   font-weight: 700;
   color: var(--darkgreyblue);
 }
-.special .monthly,.special .annually{
+.special .monthly,
+.special .annually {
   color: var(--verylightgreyblue);
 }
-.special .storage,.special  .users, .special .upload{
-    padding: .8rem;
+.special .storage,
+.special .users,
+.special .upload {
+  padding: 0.8rem;
   border-top: 1px solid hsla(240, 80%, 98%, 0.205);
 }
-.storage, .users, .upload{
-    padding: .8rem;
+.storage,
+.users,
+.upload {
+  padding: 0.8rem;
   border-top: 1px solid hsla(234, 14%, 74%, 0.39);
 }
-.storage{
+.storage {
   margin-top: 1rem;
 }
-.upload{
+.upload {
   border-bottom: 1px solid hsla(234, 14%, 74%, 0.39);
-   margin-bottom: 2rem;
+  margin-bottom: 2rem;
 }
-.special .upload{
-  border-bottom:1px solid hsla(240, 80%, 98%, 0.205);
- 
+.special .upload {
+  border-bottom: 1px solid hsla(240, 80%, 98%, 0.205);
 }
-.upload::before{
-  content: 'Send up to '
+.upload::before {
+  content: "Send up to ";
 }
-.storage::after{
-content: ' Storage'
+.storage::after {
+  content: " Storage";
 }
 
 .switch {
@@ -253,8 +226,8 @@ content: ' Storage'
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s all ease-in-out;
+  -webkit-transition: 0.4s;
+  transition: 0.4s all ease-in-out;
 }
 
 .slider:before {
@@ -265,12 +238,12 @@ content: ' Storage'
   left: 4px;
   bottom: 4px;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 input:checked + .slider {
- background:linear-gradient(180deg, hsl(236, 72%, 79%), hsl(237, 63%, 64%));
+  background: linear-gradient(180deg, hsl(236, 72%, 79%), hsl(237, 63%, 64%));
 }
 
 input:focus + .slider {
@@ -291,7 +264,7 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
-.range{
+.range {
   display: flex;
   width: fit-content;
   height: fit-content;
@@ -300,36 +273,54 @@ input:checked + .slider:before {
   column-gap: 1.5rem;
   padding: 2rem;
   padding-bottom: 3rem;
-position: relative;
-z-index: 3;
-}
-.range p{
-    color: var(--lightgreyblue) !important;
+  position: relative;
+  z-index: 3;
 }
 
-.header{
-font-size: 2rem;
-color: var(--greyblue);
-position: relative;
-z-index: 3;
+
+.header {
+  font-size: 2rem;
+  color: var(--greyblue);
+  position: relative;
+  z-index: 3;
 }
-.item button:active{
+.item button:active {
   border: 1px solid hsl(237, 63%, 64%);
   color: hsl(237, 63%, 64%);
   background: transparent;
 }
-.special button:active{
+.special button:active {
   border: 1px solid white;
   color: white;
   background: transparent;
-
 }
-.top{
+.top {
   position: absolute;
   z-index: 1;
   object-fit: contain;
   width: 100%;
   height: 100vh;
-  object-position:top right;
+  object-position: top right;
+}
+.inactive {
+  color: var(--lightgreyblue);
+   transition: all .2s ease-in-out;
+}
+.active{
+  color: var(--greyblue);
+ transition: all .2s ease-in-out;
+}
+.monthly, .annually{
+   animation: monkeynation .3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+@keyframes monkeynation{
+  0%{
+    scale: 0.1;
+    opacity: 0;
+  }
+  100%{
+    scale: 1;
+     opacity: 1;
+  }
 }
 </style>
