@@ -26,7 +26,7 @@
         </div>
         <button>LEARN MORE</button>
       </div>
-      <div class="item special">
+      <div class="special item ">
         <p class="tier">Professional</p>
         <div class="pricing">
           <p class="monthly" v-show="monkey === true">24.99</p>
@@ -74,13 +74,15 @@ section {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
+  height: fit-content;
   background: url(../assets/bg-bottom.svg), var(--verylightgreyblue);
   background-repeat: no-repeat;
   background-position: bottom left;
+  background-clip: content-box;
   background-size: 30%;
   font-family: "Montserrat";
-  z-index: 1;
+  z-index: 0;
   position: relative;
 }
 
@@ -296,7 +298,7 @@ input:checked + .slider:before {
 }
 .top {
   position: absolute;
-  z-index: 1;
+  z-index: -1;
   object-fit: contain;
   width: 100%;
   height: 100vh;
@@ -313,6 +315,11 @@ input:checked + .slider:before {
 .monthly, .annually{
    animation: monkeynation .3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
 }
+img .top{
+  display: none;
+  position: relative;
+  z-index: -1;
+}
 @keyframes monkeynation{
   0%{
     scale: 0.1;
@@ -322,5 +329,31 @@ input:checked + .slider:before {
     scale: 1;
      opacity: 1;
   }
+}
+
+@media only screen and (max-width: 1200px){
+    /*Tablets [601px -> 1200px]*/
+}
+@media only screen and (max-width: 600px){
+	/*Big smartphones [426px -> 600px]*/
+      section{
+      padding-bottom: 2rem;
+      padding-top: 4rem;
+      background:none;
+    }
+    .top{
+      display: none;
+    }
+  .container{
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+  }
+  .item{
+    border-radius: 12px;
+  }
+}
+@media only screen and (max-width: 425px){
+	/*Small smartphones [325px -> 425px]*/
 }
 </style>
