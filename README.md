@@ -62,5 +62,5 @@ Users should be able to:
 ## Author
 
 - Website - [Joshua Steed](https://www.joshuasteed.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/0xjoshva)
+- Frontend Mentor - [@0xjoshva](https://www.frontendmentor.io/profile/0xjoshva)
 
