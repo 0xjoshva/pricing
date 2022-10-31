@@ -57,7 +57,7 @@ Users should be able to:
 
 ### Useful resources
 
-- [Vue Documentation](https://vuejs.org/guide/introduction.html) - Useful resource to learn vue concepts quickly
+- [Vue Documentation](https://vuejs.org/guide/introduction.html) - Useful resource to learn new concepts quickly
 
 ## Author
 
